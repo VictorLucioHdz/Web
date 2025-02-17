@@ -1,0 +1,14 @@
+
+.Contenedor{
+    display: grid;
+    grid-template-columns: 200px 200px 200px;
+    grid-template-rows: 200px 200px 200px;
+}
+.Caja{
+    background-color: brown;
+}
+#Caja1{
+    grid-column-start: 1;
+    grid-column-end: 3
+    x;
+}
