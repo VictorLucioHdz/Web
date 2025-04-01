@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Personajes de Star Wars</h1>
+    <button id="boton">Cargar Personajes</button>
+    <ul id="personajes"></ul>
+    <script>
+      let persona = new XMLHttpRequest();
+      persona.open("GET", "https://swapi.dev/api/people/", true);
+      persona.onload(function () {
+        if (this.status === 200) {
+          let Informacion = JSON.parse(this.responseText);
+          Informacion.name.forEach((element) => {
+            document.getElementById("personajes").innerHTML +=
+              "<li>" + element + "</li>";
+          });
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="contenedorPadre">
+      <div id="ContenedorHijo">
+        <button id="btn1">Botón 1</button>
+        <button id="btn2">Botón 2</button>
+      </div>
+      <div id="ContenedorHijo">
+        <button id="btn3">Botón 3</button>
+        <button id="btn4">Botón 4</button>
+        <button id="btn5">Botón 5</button>
+      </div>
+    </div>
+    <script>
+      window.unload +
+        function () {
+          document
+            .getElementById("ContenedorPadre")
+            .addEventListener("click", (event) => {
+              console.log(evento.taget);
+            });
+        };
+    </script>
+  </body>
+</html>
