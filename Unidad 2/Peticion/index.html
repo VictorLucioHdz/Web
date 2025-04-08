@@ -4,22 +4,51 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <style>
+      #btn {
+        width: 100px;
+        height: 100px;
+        font-family: "Times New Roman", Times, serif;
+      }
+      #resultado {
+        font-family: fantasy;
+        font-size: large;
+      }
+    </style>
   </head>
   <body>
-    <h1>Personajes de Star Wars</h1>
-    <button id="boton">Cargar Personajes</button>
-    <ul id="personajes"></ul>
+    <button id="btn">picame para un elemento de star wars.</button>
+    <p id="resultado"></p>
+
     <script>
-      let persona = new XMLHttpRequest();
-      persona.open("GET", "https://swapi.dev/api/people/", true);
-      persona.onload(function () {
-        if (this.status === 200) {
-          let Informacion = JSON.parse(this.responseText);
-          Informacion.name.forEach((element) => {
-            document.getElementById("personajes").innerHTML +=
-              "<li>" + element + "</li>";
-          });
-        }
+      window.onload = function () {
+        document.getElementById("btn").addEventListener("click", function () {
+          let solicitud = new XMLHttpRequest();
+          solicitud.onload = function () {
+            console.log(solicitud.response);
+          };
+          solicitud.open("GET", "URL", true);
+          solicitud.send();
+        });
+      };
+
+      document.getElementById("btn").addEventListener("click", function () {
+        let solicitud = new XMLHttpRequest();
+
+        solicitud.onload = function () {
+          if (solicitud.status === 200) {
+            let datos = JSON.parse(solicitud.responseText);
+            let texto = `Nombre: ${datos.name}\nAltura: ${datos.height}\nPeso: ${datos.mass}\nGénero: ${datos.gender}`;
+
+            document.getElementById("resultado").textContent = texto;
+          } else {
+            document.getElementById("resultado").textContent =
+              "Error al obtener datos.";
+          }
+        };
+        var id = Math.floor(Math.random() * 83) + 1; // Genera un número aleatorio entre 1 y 10
+        solicitud.open("GET", "https://swapi.dev/api/people/" + id + "/", true);
+        solicitud.send();
       });
     </script>
   </body>
