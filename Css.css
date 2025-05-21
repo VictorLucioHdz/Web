@@ -1,0 +1,148 @@
+ .left {
+        background-color: #f4f6f8;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+        font-family: "Segoe UI", sans-serif;
+      }
+
+      .left h2 {
+        text-align: center;
+        color: #2c3e50;
+        margin-bottom: 20px;
+      }
+
+      #formCarro {
+        display: flex;
+        flex-direction: column;
+      }
+
+      #formCarro label {
+        margin-top: 10px;
+        font-weight: bold;
+        color: #34495e;
+      }
+
+      #formCarro input {
+        padding: 8px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        margin-top: 5px;
+        font-size: 14px;
+      }
+
+      #formCarro button {
+        margin-top: 20px;
+        padding: 10px;
+        background-color: #3498db;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background 0.3s ease;
+      }
+
+      #formCarro button:hover {
+        background-color: #2980b9;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+      }
+
+      header {
+        background-color: #1e1e2f;
+        color: white;
+        padding: 20px;
+        text-align: center;
+        font-size: 24px;
+      }
+
+      .container {
+        display: flex;
+        height: calc(100vh - 80px); /* 100% height minus header */
+      }
+
+      .left {
+        width: 40%;
+        background-color: #f0f0f0;
+        padding: 20px;
+        border-right: 1px solid #ccc;
+      }
+
+      .right {
+        width: 60%;
+        padding: 20px;
+        overflow-y: auto;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 10px;
+      }
+
+      th,
+      td {
+        border: 1px solid #ccc;
+        padding: 12px;
+        text-align: left;
+      }
+
+      th {
+        background-color: #ddd;
+      }
+      .botones button {
+        flex: 1;
+        margin: 0 5px;
+        padding: 10px;
+        font-weight: bold;
+        font-size: 14px;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background 0.3s;
+      }
+
+      .botones button:nth-child(1) {
+        background-color: #27ae60; /* Verde */
+      }
+      .botones button:nth-child(2) {
+        background-color: #e74c3c; /* Rojo */
+      }
+      .botones button:nth-child(3) {
+        background-color: #f39c12; /* Naranja */
+      }
+
+      .botones button:hover {
+        opacity: 0.9;
+      }  .btnEditar {
+    background-color: #007bff;  /* azul */
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 5px;
+  }
+
+  .btnBorrar {
+    background-color: #dc3545;  /* rojo */
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .btnEditar:hover {
+    background-color: #0056b3;
+  }
+
+  .btnBorrar:hover {
+    background-color: #c82333;
+  }
