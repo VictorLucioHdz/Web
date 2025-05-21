@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./Diseño.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="idcontene" class="contenedor">
+      <img id="Imagen" src="./Chabelo.jpg" />
+      <div id="caja1" class="caja"></div>
+      <div id="caja2" class="caja"></div>
+      <div id="caja3" class="caja"></div>
+      <div id="caja4" class="caja"></div>
+      <div id="caja5" class="caja"></div>
+      <div id="caja6" class="caja"></div>
+      <div id="caja7" class="caja"></div>
+      <div id="caja8" class="caja"></div>
+      <div id="caja9" class="caja"></div>
+      <input id="rest" type="button" value="RESETEAR" />
+    </div>
+    <script>
+      const Reset = document.getElementById("rest");
+
+      Reset.addEventListener("click", () => {
+        cajas.forEach((caja) => caja.classList.remove("active"));
+      });
+
+      const cajas = document.querySelectorAll(".caja");
+
+      cajas.forEach((caja) => {
+        caja.addEventListener("click", () => {
+          caja.classList.add("active");
+          imagen.style.display = "none";
+        });
+      });
+    </script>
+  </body>
+</html>
