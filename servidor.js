@@ -10,12 +10,11 @@ app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 
   const connection = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  database: 'd21100233',
-  password: 'admin1234',
-  port: 3306,
-  
+  host: process.env.MYSQLHOST,
+  user: process.env.MYSQLUSER,
+  password: process.env.MYSQLPASSWORD,
+  database: process.env.MYSQLDATABASE,
+  port: process.env.MYSQLPORT
   });
   app.get('/carros', (req, res) => {
   
@@ -81,7 +80,8 @@ app.use ((req, res, next) => {
     res.send('No se encontró la ruta solicitada');
 });
 
-app.listen(3000, () => {
+const PORT = process.env.PORT || 3000; 
+app.listen(PORT, () => {
   console.log('Servidor escuchando en el puerto 3000');
 });
 
