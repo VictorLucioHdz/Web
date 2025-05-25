@@ -15,7 +15,7 @@ app.use(express.urlencoded({ extended: true }));
   password: process.env.DB_PASSWORD || 'admin1234',
   database: process.env.DB_NAME || 'd21100233',
   port: process.env.DB_PORT || 3306,
- 
+ //mysql://root:kBkIKwbENYMZTRdNecYymOhDBEppZZCa@shuttle.proxy.rlwy.net:39383/railway
   
   });
   app.get('/carros', (req, res) => {
