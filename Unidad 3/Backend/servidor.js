@@ -10,11 +10,12 @@ app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 
   const connection = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  database: 'd21100233',
-  password: 'admin1234',
-  port: 3306,
+  host: process.env.DB_HOST || 'localhost',
+  user: process.env.DB_USER || 'root',
+  password: process.env.DB_PASSWORD || 'admin1234',
+  database: process.env.DB_NAME || 'd21100233',
+  port: process.env.DB_PORT || 3306,
+ 
   
   });
   app.get('/carros', (req, res) => {
@@ -26,6 +27,16 @@ app.use(express.urlencoded({ extended: true }));
   }
 );
   
+});
+app.get('/carros/:id', (req, res) => {
+  const ID = req.params.id
+  connection.query(
+    'SELECT * FROM d21100233.carros WHERE id = ?',
+    "ID",
+    function (err, results) {
+      res.json(results);
+    }
+  );
 });
 app.delete('/carros/:id', (req, res) => {
   const ID = req.params.id
@@ -70,8 +81,8 @@ app.use ((req, res, next) => {
     res.status(404);
     res.send('No se encontró la ruta solicitada');
 });
-
-app.listen(3000, () => {
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
   console.log('Servidor escuchando en el puerto 3000');
 });
 

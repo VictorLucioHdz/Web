@@ -4,6 +4,7 @@
   
   "main": "servidor.js",
   "scripts": {
+    "start": "node servidor.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

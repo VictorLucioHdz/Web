@@ -31,8 +31,8 @@
 
           <div class="botones">
             <button type="submit" id="btnAgregar">Agregar</button>
-            <button type="button" id="btnEliminar">Eliminar</button>
             <button type="button" id="btnActualizar">Actualizar</button>
+            <button type="button" id="btnLimpiar">Limpiar</button>
           </div>
         </form>
       </div>
@@ -58,6 +58,7 @@
     </div>
   </body>
   <script>
+    var Editar = 0;
     function CargarCarros() {
       // Al cargar la página, obtener los carros desde el backend
       fetch("http://localhost:3000/carros")
@@ -78,7 +79,6 @@
             tbody.appendChild(row);
           });
           const BtnBORRAR = document.querySelectorAll(".btnBorrar");
-
           BtnBORRAR.forEach((boton) => {
             boton.addEventListener("click", function () {
               const n = this.getAttribute("data-id");
@@ -86,6 +86,24 @@
                 method: "DELETE",
               }).then(() => location.reload());
               console.log("ID a borrar:", n);
+            });
+          });
+          const BtnEDITAR = document.querySelectorAll(".btnEditar");
+          BtnEDITAR.forEach((boton) => {
+            boton.addEventListener("click", function () {
+              Editar = 1;
+              const n = this.getAttribute("data-id");
+              fetch(`http://localhost:3000/carros/${n}`)
+                .then((res) => res.json())
+                .then((carro) => {
+                  // Si el backend responde con un array, toma el primer elemento
+                  const auto = Array.isArray(carro) ? carro[0] : carro;
+                  document.getElementById("id").value = auto.Id;
+                  document.getElementById("modelo").value = auto.Modelo;
+                  document.getElementById("marca").value = auto.Marca;
+                  document.getElementById("precio").value = auto.Precio;
+                  document.getElementById("color").value = auto.Color;
+                });
             });
           });
         })
@@ -99,58 +117,62 @@
       .getElementById("formCarro")
       .addEventListener("submit", function (e) {
         e.preventDefault();
+        if (Editar == 0) {
+          const id = document.getElementById("id").value;
+          const modelo = document.getElementById("modelo").value;
+          const marca = document.getElementById("marca").value;
+          const precio = document.getElementById("precio").value;
+          const color = document.getElementById("color").value;
 
-        const id = document.getElementById("id").value;
-        const modelo = document.getElementById("modelo").value;
-        const marca = document.getElementById("marca").value;
-        const precio = document.getElementById("precio").value;
-        const color = document.getElementById("color").value;
+          const carro = {
+            Id: id,
+            Modelo: modelo,
+            Marca: marca,
+            Precio: precio,
+            Color: color,
+          };
 
-        const carro = {
-          Id: id,
-          Modelo: modelo,
-          Marca: marca,
-          Precio: precio,
-          Color: color,
-        };
-
-        fetch("http://localhost:3000/carros", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(carro),
-        }).then(() => location.reload());
+          fetch("http://localhost:3000/carros", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(carro),
+          }).then(() => location.reload());
+        }
       });
 
-    document
-      .getElementById("btnEliminar")
-      .addEventListener("click", function () {
-        const id = document.getElementById("id").value;
-
-        fetch(`http://localhost:3000/carros/${id}`, {
-          method: "DELETE",
-        }).then(() => location.reload());
-      });
     document
       .getElementById("btnActualizar")
       .addEventListener("click", function () {
-        const id = document.getElementById("id").value;
-        const modelo = document.getElementById("modelo").value;
-        const marca = document.getElementById("marca").value;
-        const precio = document.getElementById("precio").value;
-        const color = document.getElementById("color").value;
+        if (Editar == 1) {
+          const id = document.getElementById("id").value;
+          const modelo = document.getElementById("modelo").value;
+          const marca = document.getElementById("marca").value;
+          const precio = document.getElementById("precio").value;
+          const color = document.getElementById("color").value;
 
-        const carro = {
-          Modelo: modelo,
-          Marca: marca,
-          Precio: precio,
-          Color: color,
-        };
+          const carro = {
+            Modelo: modelo,
+            Marca: marca,
+            Precio: precio,
+            Color: color,
+          };
 
-        fetch(`http://localhost:3000/carros/${id}`, {
-          method: "PUT",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(carro),
-        }).then(() => CargarCarros());
+          fetch(`http://localhost:3000/carros/${id}`, {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(carro),
+          }).then(() => CargarCarros());
+        }
+      });
+    document
+      .getElementById("btnLimpiar")
+      .addEventListener("click", function () {
+        document.getElementById("id").value = "";
+        document.getElementById("modelo").value = "";
+        document.getElementById("marca").value = "";
+        document.getElementById("precio").value = "";
+        document.getElementById("color").value = "";
+        Editar = 0;
       });
   </script>
 </html>
