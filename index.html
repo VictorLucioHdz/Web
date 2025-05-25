@@ -61,7 +61,7 @@
     var Editar = 0;
     function CargarCarros() {
       // Al cargar la página, obtener los carros desde el backend
-      fetch("http://localhost:3000/carros")
+      fetch("https://web-production-2c92.up.railway.app/carros")
         .then((res) => res.json())
         .then((data) => {
           const tbody = document.querySelector("#carrosTable tbody");
@@ -82,7 +82,7 @@
           BtnBORRAR.forEach((boton) => {
             boton.addEventListener("click", function () {
               const n = this.getAttribute("data-id");
-              fetch(`http://localhost:3000/carros/${n}`, {
+              fetch(`https://web-production-2c92.up.railway.app/carros/${n}`, {
                 method: "DELETE",
               }).then(() => location.reload());
               console.log("ID a borrar:", n);
@@ -93,7 +93,7 @@
             boton.addEventListener("click", function () {
               Editar = 1;
               const n = this.getAttribute("data-id");
-              fetch(`http://localhost:3000/carros/${n}`)
+              fetch(`https://web-production-2c92.up.railway.app/carros/${n}`)
                 .then((res) => res.json())
                 .then((carro) => {
                   // Si el backend responde con un array, toma el primer elemento
@@ -132,7 +132,7 @@
             Color: color,
           };
 
-          fetch("http://localhost:3000/carros", {
+          fetch("https://web-production-2c92.up.railway.app/carros", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(carro),
@@ -157,7 +157,7 @@
             Color: color,
           };
 
-          fetch(`http://localhost:3000/carros/${id}`, {
+          fetch(`https://web-production-2c92.up.railway.app/carros/${id}`, {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(carro),
