@@ -24,7 +24,7 @@ app.use(express.urlencoded({ extended: true }));
       console.error('Error al obtener los carros:', err);
       return res.status(500).json({ error: 'Error al obtener los datos de carros' });
     }
-    res.status(200).json(results); // 👈 Esto debe ser JSON
+    res.status(200).send("Si entro"); // 👈 Esto debe ser JSON
   });
 });
 
