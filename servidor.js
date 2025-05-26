@@ -23,7 +23,7 @@ app.use(express.urlencoded({ extended: true }));
  connection.query(
   'SELECT * FROM d21100233.carros ',
   function (err, results) {
-    res.json(results);
+    res.send("Se obtuvieron los carros");
   }
 );
   
