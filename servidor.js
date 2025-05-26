@@ -43,10 +43,7 @@ app.delete('/carros/:id', (req, res) => {
   connection.query(
     'DELETE FROM d21100233.carros WHERE id = ?',
     [ID],
-    function (err, results) {
-      res.send('Se elimino el carro');
-    }
-   
+
   );
   });
 
@@ -71,9 +68,7 @@ app.put('/carros/:id', (req, res) => {
   connection.query(
     'UPDATE d21100233.carros SET modelo = ?, marca = ?, precio = ?, color = ? WHERE id = ?',
     [Modelo, Marca , Precio, Color, id],
-    function (err, results) {
-      res.send('Se actualizo el carro');
-    }
+    
 )});
 
 
