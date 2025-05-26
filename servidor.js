@@ -19,15 +19,15 @@ app.use(express.urlencoded({ extended: true }));
   
   });
   app.get('/carros', (req, res) => {
-  
- connection.query(
-  'SELECT * FROM d21100233.carros ',
-  function (err, results) {
-    res.json(results);
-  }
-);
-  
+   connection.query('SELECT * FROM carros', (err, results) => {
+    if (err) {
+      console.error('Error al obtener los carros:', err);
+      return res.status(500).json({ error: 'Error al obtener los datos de carros' });
+    }
+    res.status(200).json(results); // 👈 Esto debe ser JSON
+  });
 });
+
 app.get('/carros/:id', (req, res) => {
   const ID = req.params.id
   connection.query(
