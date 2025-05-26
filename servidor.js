@@ -19,7 +19,7 @@ app.use(express.urlencoded({ extended: true }));
   
   });
   app.get('/carros', (req, res) => {
-   connection.query('SELECT * FROM carros', (err, results) => {
+   connection.query('SELECT * FROM Carros', (err, results) => {
     if (err) {
       console.error('Error al obtener los carros:', err);
       return res.status(500).json({ error: 'Error al obtener los datos de carros' });
@@ -31,7 +31,7 @@ app.use(express.urlencoded({ extended: true }));
 app.get('/carros/:id', (req, res) => {
   const ID = req.params.id
   connection.query(
-    'SELECT * FROM d21100233.carros WHERE id = ?',
+    'SELECT * FROM d21100233.Carros WHERE id = ?',
     "ID",
     function (err, results) {
       res.json(results);
@@ -50,7 +50,7 @@ app.delete('/carros/:id', (req, res) => {
 app.post('/carros', (req, res) => {
   const {Id, Modelo, Marca , Precio, Color} = req.body;
   connection.query(
-    'INSERT INTO d21100233.carros (id, modelo, marca , precio, color) VALUES (?, ?, ?, ?, ?)',
+    'INSERT INTO d21100233.Carros (id, modelo, marca , precio, color) VALUES (?, ?, ?, ?, ?)',
     [Id, Modelo, Marca , Precio, Color],
     function (err, results) {
       res.json({Id, Modelo, Marca , Precio, Color});
@@ -66,7 +66,7 @@ app.put('/carros/:id', (req, res) => {
   const id = req.params.id;
   const {Modelo, Marca , Precio, Color} = req.body;
   connection.query(
-    'UPDATE d21100233.carros SET modelo = ?, marca = ?, precio = ?, color = ? WHERE id = ?',
+    'UPDATE d21100233.Carros SET modelo = ?, marca = ?, precio = ?, color = ? WHERE id = ?',
     [Modelo, Marca , Precio, Color, id],
     
 )});
