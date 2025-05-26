@@ -53,7 +53,7 @@ app.delete('/carros/:id', (req, res) => {
 app.post('/carros', (req, res) => {
   const {Id, Modelo, Marca , Precio, Color} = req.body;
   connection.query(
-    'INSERT INTO d21100233.Carros ( Modelo, Marca , Precio, Color) VALUES (?, ?, ?, ?, ?)',
+    'INSERT INTO d21100233.Carros ( Id,Modelo, Marca , Precio, Color) VALUES (?, ?, ?, ?, ?)',
     [Id, Modelo, Marca , Precio, Color],
     function (err, results) {
       res.json({Id, Modelo, Marca , Precio, Color});
