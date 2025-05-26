@@ -44,7 +44,7 @@ app.get('/carros/:id', (req, res) => {
 app.delete('/carros/:id', (req, res) => {
   const ID = req.params.id
   connection.query(
-    'DELETE FROM d21100233.carros WHERE id = ?',
+    'DELETE FROM d21100233.Carros WHERE id = ?',
     [ID],
 
   );
@@ -53,7 +53,7 @@ app.delete('/carros/:id', (req, res) => {
 app.post('/carros', (req, res) => {
   const {Id, Modelo, Marca , Precio, Color} = req.body;
   connection.query(
-    'INSERT INTO d21100233.Carros (id, modelo, marca , precio, color) VALUES (?, ?, ?, ?, ?)',
+    'INSERT INTO d21100233.Carros (Id, Modelo, Marca , Precio, Color) VALUES (?, ?, ?, ?, ?)',
     [Id, Modelo, Marca , Precio, Color],
     function (err, results) {
       res.json({Id, Modelo, Marca , Precio, Color});
@@ -69,7 +69,7 @@ app.put('/carros/:id', (req, res) => {
   const id = req.params.id;
   const {Modelo, Marca , Precio, Color} = req.body;
   connection.query(
-    'UPDATE d21100233.Carros SET modelo = ?, marca = ?, precio = ?, color = ? WHERE id = ?',
+    'UPDATE d21100233.Carros SET Modelo = ?, Marca = ?, Precio = ?, Color = ? WHERE id = ?',
     [Modelo, Marca , Precio, Color, id],
     
 )});
