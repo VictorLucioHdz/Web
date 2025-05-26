@@ -18,7 +18,7 @@ app.use(express.urlencoded({ extended: true }));
  
   
   });
-  app.get('/carros', (req, res) => {
+  app.get('"https://web-production-2c92.up.railway.app/carros', (req, res) => {
    connection.query('SELECT * FROM carros', (err, results) => {
     if (err) {
       console.error('Error al obtener los carros:', err);
